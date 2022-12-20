@@ -1,0 +1,18 @@
+:root {
+	--heavy: #472183;
+	--normal: #4B56D2;
+	--light: #82C3EC;
+	--vlight: #F1F6F5;
+}
+
+.button {
+	border: 1px solid transparent;
+	border-radius: 5px;
+	padding: 0.25rem 0.75rem;
+	background-color: var(--normal);
+	color: var(--vlight);
+	transition: 0.25s;
+}
+.button:hover {
+	background-color: var(--light);
+}
