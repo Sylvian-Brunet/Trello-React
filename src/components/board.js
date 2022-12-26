@@ -1,43 +1,54 @@
 import React from 'react';
+import Theme from './theme.js';
 
 class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            themes: [{
-                objectifs: [{
-                    tasks: []
-                }]
-            }]
+            themes: [
+                {   
+                    id: 1,
+                    name: "test",
+                    objectives: []
+                }
+            ]
         };
     }
+
+    addTheme = (event, themeName = "TODO") => {
+        this.setState(
+            {
+                themes: this.state.themes.concat([
+                    {
+                        id: this.state.themes[this.state.themes.length - 1].id + 1,
+                        name: themeName,
+                        objectives: []
+                    }
+                ])
+            }
+        )
+    }
+    
     render() {
         return (
-            <div class="container-fuild">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="shadow p-3">
-                            <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#addTheme">Ajouter un thème</button>
-                            <div class="modal fade" id="addTheme" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5">Ajouter un thème</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body"></div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="button" data-bs-dismiss="modal">Annuler</button>
-                                            <button type="button" class="button">Ajouter</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <div className="container-fuild">
+                <div className="row">
+                    <div className="col-12">
+                        <div className="shadow p-3">
+
                         </div>
                     </div>
-                    <div class="col-12">
-                        <div class="row">
+                    <div className="col-12">
+                        <div className="row" id="themes_list">
+                            {this.state.themes.map(theme => {
+                                <Theme id={"theme_" + theme.id} name={theme.name} />
+                            })}
 
+                            {/* Themes component should be render there ...*/}
+
+                            <div className="col-lg-4">
+                                <button type="button" className="btn btn-primary w-100" onClick={this.addTheme}>Ajouter</button>
+                            </div>
                         </div>
                     </div>
                 </div>
