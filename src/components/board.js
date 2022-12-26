@@ -5,26 +5,22 @@ class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            themes: [
-                {   
-                    id: 1,
-                    name: "test",
-                    objectives: []
-                }
-            ]
+            themes: [],
+            nextThemeId: 1
         };
     }
 
-    addTheme = (event, themeName = "TODO") => {
+    addTheme = () => {
         this.setState(
             {
                 themes: this.state.themes.concat([
                     {
-                        id: this.state.themes[this.state.themes.length - 1].id + 1,
-                        name: themeName,
-                        objectives: []
+                        id: this.state.nextThemeId,
+                        name: "todo",
+                        cards: []
                     }
-                ])
+                ]),
+                nextThemeId: this.state.nextThemeId + 1
             }
         )
     }
@@ -39,15 +35,13 @@ class Board extends React.Component {
                         </div>
                     </div>
                     <div className="col-12">
-                        <div className="row" id="themes_list">
-                            {this.state.themes.map(theme => {
+                        <div className="row p-2" id="themes_list">
+                            {this.state.themes.map(theme => (
                                 <Theme id={"theme_" + theme.id} name={theme.name} />
-                            })}
+                            ))}
 
-                            {/* Themes component should be render there ...*/}
-
-                            <div className="col-lg-4">
-                                <button type="button" className="btn btn-primary w-100" onClick={this.addTheme}>Ajouter</button>
+                            <div className="col-lg-3 mb-3">
+                                <button type="button" className="btn btn-primary w-100 h-100" onClick={this.addTheme}>Ajouter</button>
                             </div>
                         </div>
                     </div>
