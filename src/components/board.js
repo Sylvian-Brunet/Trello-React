@@ -6,7 +6,9 @@ class Board extends React.Component {
         super(props);
         this.state = {
             themes: [],
-            nextThemeId: 1
+            nextThemeId: 1,
+            nextCardId: 1,
+            nextTaskId: 1
         };
     }
 
@@ -21,8 +23,32 @@ class Board extends React.Component {
                     }
                 ]),
                 nextThemeId: this.state.nextThemeId + 1
+            }, () => {
+                console.log(this.state);
             }
-        )
+        );
+    }
+
+    addCard = (event, idTheme) => {
+        let themes = this.state.themes;
+        let theme = themes[idTheme - 1];
+        
+        let card = {
+            id: this.state.nextCardId,
+            name: "todo",
+            tasks: [],
+            categories: []
+        };
+
+        theme.cards = theme.cards.concat([card]);
+        themes[idTheme - 1] = theme;
+
+        this.setState({
+            themes: themes,
+            nextCardId: this.state.nextCardId + 1
+        }, () => {
+            console.log(this.state);
+        });
     }
     
     render() {
@@ -37,11 +63,11 @@ class Board extends React.Component {
                     <div className="col-12">
                         <div className="row p-2" id="themes_list">
                             {this.state.themes.map(theme => (
-                                <Theme id={"theme_" + theme.id} name={theme.name} />
+                                <Theme key={"theme_" + theme.id} theme={theme} onClickAddCard={event => this.addCard(event, theme.id)} />
                             ))}
 
                             <div className="col-lg-3 mb-3">
-                                <button type="button" className="btn btn-primary w-100 h-100" onClick={this.addTheme}>Ajouter</button>
+                                <button type="button" className="button w-100" onClick={this.addTheme}><i className="bi bi-plus-lg me-2"></i>Ajouter</button>
                             </div>
                         </div>
                     </div>
