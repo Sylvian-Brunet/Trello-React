@@ -1,23 +1,47 @@
 :root {
 	--heavy: #472183;
 	--normal: #4B56D2;
-	--light: #82C3EC;
-	--vlight: #F1F6F5;
+	--blue: #5F6AE4;
+	--blight: #82C3EC;
+	--bvlight: #F1F6F5;
 }
+
+.vh-100 { height: 100vh;}
+
+.bg-heavy { background-color: var(--heavy); }
+.bg-normal { background-color: var(--normal); }
+.bg-blue { background-color: var(--blue); }
+.bg-blight { background-color: var(--blight); }
+.bg-bvlight { background-color: var(--bvlight); }
 
 .button {
 	border: 1px solid transparent;
 	border-radius: 5px;
 	padding: 0.25rem 0.75rem;
 	background-color: var(--normal);
-	color: var(--vlight);
+	color: var(--bvlight);
 	transition: 0.25s;
+	font-size: 14px;
 }
 .button:hover {
-	background-color: var(--light);
+	background-color: var(--blue);
 }
 
-.input-text {
+.button-card {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	font-size: 12px;
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	background-color: var(--blue);
+}
+.button-card:hover {
+	background-color: var(--blight);
+}
+
+.input-theme {
 	position: relative;
 	background-color: white;
 	padding-left: 0;
@@ -26,7 +50,7 @@
 	background-color: rgb(var(--bs-light-rgb));
 	transition: 0.25s;
 }
-.input-text:focus {
+.input-theme:focus {
 	border-bottom: 2px solid var(--normal);
 	border-left: 2px solid var(--normal);
 	padding-left: 5px;

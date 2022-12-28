@@ -3,14 +3,11 @@ import Card from './card.js';
 
 class Theme extends React.Component {
     render() {
-
-        console.log(this.props);
-
         return (
-            <div id={this.props.theme.name} className="col-lg-3 mb-3">
+            <div id={this.props.theme.name} className="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-3">
                 <div className="bg-light shadow rounded p-2">
                     <div className="d-flex justify-content-between">
-                        <input type="text" className="input-text w-75" defaultValue={this.props.theme.name}></input>
+                        <input type="text" className="input-theme w-75" defaultValue={this.props.theme.name}></input>
                         <button type="button" className="button"><i className="bi bi-three-dots"></i></button>
                     </div>
                     <div className="mt-2">
